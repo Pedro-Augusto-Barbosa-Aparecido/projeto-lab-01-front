@@ -5,23 +5,31 @@ import {
 } from "../styles/pages/Login/styles";
 
 import * as Tab from "@radix-ui/react-tabs";
+import { useState } from "react";
+import { FormsCreateAccount } from "../components/pages/Forms/FormsCreateAccount";
+import { FormsLogin } from "../components/pages/Forms/FormsLogin";
 
 export default function Login() {
+  const [activeTab, setActiveTab] = useState<string>("create");
+
   return (
     <LoginContainer>
-      <TabRoot defaultValue="create">
+      <TabRoot
+        defaultValue="create"
+        onValueChange={(value) => {
+          setActiveTab(value);
+        }}
+      >
         <Tab.List>
-          <TabButton isActive value="create">
+          <TabButton isTabActive={activeTab === "create"} value="create">
             Create Account
           </TabButton>
-          <TabButton value="login">Entrar</TabButton>
+          <TabButton isTabActive={activeTab === "login"} value="login">
+            Log In
+          </TabButton>
         </Tab.List>
-        <Tab.Content value="create">
-          <p>create</p>
-        </Tab.Content>
-        <Tab.Content value="login">
-          <p>login</p>
-        </Tab.Content>
+        <FormsCreateAccount />
+        <FormsLogin />
       </TabRoot>
     </LoginContainer>
   );

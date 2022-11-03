@@ -21,9 +21,18 @@ export const GlobalStyles = createGlobalStyle`
       color: ${(props) => props.theme["gray-300"]};
       -webkit-font-smoothing: antialiased;
     }
+
     body, input, textarea, button {
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
       font-size: 1rem;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active  {
+      transition: background-color 5000s;
+      -webkit-text-fill-color: ${(props) => props.theme["gray-300"]} !important;
     }
 `;
